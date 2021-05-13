@@ -1,0 +1,10 @@
+<app-nav></app-nav>
+<div class="d-flex justify-content-center mt-5 pt-5" *ngIf="loading">
+  <mat-spinner [diameter]="56"></mat-spinner>
+  <span class="display-5">Loading...</span>
+</div>
+<div class="row m-0">
+  <div class="mx-auto col col-lg-10">
+    <app-weather-info></app-weather-info>
+  </div>
+</div>

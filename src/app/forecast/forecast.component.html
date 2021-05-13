@@ -1,0 +1,36 @@
+<div>
+  <app-graph *ngIf="humidityList" [data]="humidityList"></app-graph>
+  <div
+    class="day-container justify-content-start justify-content-lg-around"
+    *ngIf="displayList"
+  >
+    <div class="day-card" *ngFor="let data of currentList">
+      <div>
+        {{ getLocaleDate(data.dt) | date: 'h a' }}
+      </div>
+      <img height="40" width="40" src="{{ getIcon(data.weather[0].icon) }}" />
+      <div>{{ data.main.temp }}&#8451;</div>
+    </div>
+  </div>
+  <div class="tile-container" *ngIf="displayList">
+    <div
+      class="tile"
+      (click)="changeCurrentList(data)"
+      [ngClass]="{ 'bg-secondary text-white': data === currentList }"
+      *ngFor="let data of displayList | slice: '1'"
+    >
+      <div>
+        {{ getLocaleDate(data[0].dt) | date: 'EEE' }}
+      </div>
+      <div>
+        <img
+          height="40"
+          width="40"
+          src="{{ getIcon(data[0].weather[0].icon) }}"
+        />
+      </div>
+      <div>{{ data[0].main.humidity }}%</div>
+      <div>{{ data[0].main.temp_min }}/{{ data[0].main.temp_max }} &#8451;</div>
+    </div>
+  </div>
+</div>

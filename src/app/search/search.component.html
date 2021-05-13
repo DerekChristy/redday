@@ -1,0 +1,43 @@
+<div class="d-flex mt-1">
+  <mat-form-field class="w-25">
+    <mat-label>Search by</mat-label>
+    <mat-select [formControl]="searchType">
+      <mat-option value="city" selected> City </mat-option>
+      <mat-option value="coord"> Coordinates </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- <div class="example-selected-value">Selected value: {{ searchType.value }}</div> -->
+  <div class="w-50" *ngIf="searchType.value === 'city'">
+    <mat-form-field class="w-100">
+      <mat-label>Name</mat-label>
+      <input matInput [formControl]="search" />
+    </mat-form-field>
+  </div>
+  <div class="w-50" *ngIf="searchType.value === 'coord'">
+    <mat-form-field class="w-50">
+      <mat-label>Latitude</mat-label>
+      <input matInput [(ngModel)]="loc.lat" />
+    </mat-form-field>
+    <mat-form-field class="w-50">
+      <mat-label>Longitude</mat-label>
+      <input matInput [(ngModel)]="loc.lon" />
+    </mat-form-field>
+  </div>
+  <div class="w-25" style="padding-left: 1rem">
+    <button
+      *ngIf="searchType.value === 'coord'"
+      mat-icon-button
+      (click)="onLat()"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+    <button
+      *ngIf="searchType.value === 'city'"
+      mat-icon-button
+      (click)="onCity()"
+      [disabled]="!search.value || (search.value && search.value.length < 2)"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>

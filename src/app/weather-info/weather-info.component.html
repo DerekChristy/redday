@@ -1,0 +1,65 @@
+<div *ngIf="city">
+  <div class="py-2 px-1">
+    <div class="row flex-column-reverse flex-lg-row m-0">
+      <div class="col">
+        <div class="h2">
+          <span>{{ city.name }}</span
+          ><span *ngIf="city.sys.country">, {{ city.sys.country }}</span>
+        </div>
+        <h3 class="m-0">
+          {{ getLocaleDate(city.dt, city.timezone) | date: 'fullDate' }}
+        </h3>
+        <h4 class="text-secondary">
+          Feels like {{ city.main.feels_like }}&#8451;
+        </h4>
+      </div>
+      <div class="col">
+        <app-search></app-search>
+      </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+      <div style="text-align: right">
+        <div class="display-5 display-lg-1">{{ city.main.temp }} &#8451;</div>
+        <div class="h5">
+          {{ city.weather[0].description | titlecase }}
+        </div>
+      </div>
+      <div>
+        <img src="{{ getIcon(city.weather[0].icon) }}" alt="" />
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row pt-2">
+      <div class="col text-center">
+        <h2 class="m-0 h2">{{ city.main.temp_max }}&#8451;</h2>
+        <h4>High</h4>
+        <h2 class="m-0 h2">{{ city.main.temp_min }}&#8451;</h2>
+        <h4>Low</h4>
+      </div>
+      <div class="col text-center">
+        <h2 class="m-0 h2">{{ city.wind.speed }} m/s</h2>
+        <h4>Wind</h4>
+        <h2 class="m-0 h2">{{ city.main.humidity }}%</h2>
+        <h4>Humidity</h4>
+      </div>
+      <div class="col text-center">
+        <h2 class="m-0 h2">
+          {{ city.sys.sunrise * 1000 | date: 'shortTime' }}
+        </h2>
+        <h4>Sunrise</h4>
+        <h2 class="m-0 h2">
+          {{ city.sys.sunset * 1000 | date: 'shortTime' }}
+        </h2>
+        <h4>Sunset</h4>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <app-forecast></app-forecast>
+    <!-- <h3>Feels like {{ city.main.feels_like }}&#8451;</h3>
+    <h3>Min {{ city.main.temp_min }}&#8451;</h3>
+
+    <h3>Pressure {{ city.main.pressure }} hPa</h3>
+    <h3>Sea Level {{ city.main.sea_level }} hPa</h3>
+    <h3>Ground Level {{ city.main.grnd_level }} hPa</h3> -->
+  </div>
+</div>
