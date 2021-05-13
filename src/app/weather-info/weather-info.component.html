@@ -7,7 +7,7 @@
           ><span *ngIf="city.sys.country">, {{ city.sys.country }}</span>
         </div>
         <h3 class="m-0">
-          {{ getLocaleDate(city.dt, city.timezone) | date: 'fullDate' }}
+          {{ date | date: 'fullDate' }}
         </h3>
         <h4 class="text-secondary">
           Feels like {{ city.main.feels_like }}&#8451;

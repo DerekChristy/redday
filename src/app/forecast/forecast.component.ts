@@ -58,17 +58,17 @@ export class ForecastComponent implements OnInit {
   orderByDay() {
     this.displayList = [];
     this.today = new Date().getDay();
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
       console.log((this.today + i) % 7);
       this.displayList.push(this.sortList[(this.today + i) % 7]);
     }
     console.log('displ', this.displayList);
-    this.changeCurrentList(this.displayList[this.today]);
+    this.changeCurrentList(this.displayList[0]);
     // this.changeCurrentList(this.displayList[0]);
     // this.updateHumidity(this.displayList[0]);
   }
   getLocaleDate(date) {
-    return new Date(date * 1000 + this.city['timezone'] * 1000);
+    return new Date(date * 1000 + this.city['timezone']);
   }
   getIcon(code) {
     return `http://openweathermap.org/img/wn/${code}@4x.png`;

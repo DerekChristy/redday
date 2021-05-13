@@ -8,11 +8,15 @@ import { AppService } from '../app.service';
 })
 export class WeatherInfoComponent implements OnInit {
   city;
+  zone;
+  date;
   constructor(private appServie: AppService) {
     appServie.$onCityChange.subscribe((res) => {
       if (res) {
         console.log('got new city');
         this.city = res;
+        this.zone = this.city.timezone;
+        this.date = this.getLocaleDate(this.city.dt);
       }
     });
   }
@@ -22,7 +26,8 @@ export class WeatherInfoComponent implements OnInit {
   getIcon(code) {
     return `http://openweathermap.org/img/wn/${code}@4x.png`;
   }
-  getLocaleDate(date, zone) {
-    return new Date(date * 1000 + zone * 1000);
+  getLocaleDate(date) {
+    console.log(date, this.zone);
+    return new Date(date * 1000 + this.zone);
   }
 }

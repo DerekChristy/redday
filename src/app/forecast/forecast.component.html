@@ -14,7 +14,7 @@
   </div>
   <div class="tile-container" *ngIf="displayList">
     <div
-      *ngFor="let data of displayList | slice: '1'"
+      *ngFor="let data of displayList"
       class="tile"
       (click)="changeCurrentList(data)"
       [ngClass]="{ 'bg-secondary text-white': data === currentList }"
