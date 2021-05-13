@@ -1,8 +1,8 @@
 <div>
-  <app-graph *ngIf="humidityList" [data]="humidityList"></app-graph>
+  <app-graph *ngIf="currentList" [data]="humidityList"></app-graph>
   <div
     class="day-container justify-content-start justify-content-lg-around"
-    *ngIf="displayList"
+    *ngIf="currentList"
   >
     <div class="day-card" *ngFor="let data of currentList">
       <div>
@@ -14,10 +14,10 @@
   </div>
   <div class="tile-container" *ngIf="displayList">
     <div
+      *ngFor="let data of displayList | slice: '1'"
       class="tile"
       (click)="changeCurrentList(data)"
       [ngClass]="{ 'bg-secondary text-white': data === currentList }"
-      *ngFor="let data of displayList | slice: '1'"
     >
       <div>
         {{ getLocaleDate(data[0].dt) | date: 'EEE' }}

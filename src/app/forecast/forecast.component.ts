@@ -14,6 +14,8 @@ export class ForecastComponent implements OnInit {
   displayList;
   currentList = [];
   humidityList;
+  today;
+
   constructor(private appService: AppService, private datePipe: DatePipe) {
     this.appService.$onCityChange.subscribe((res) => {
       if (res) {
@@ -55,12 +57,13 @@ export class ForecastComponent implements OnInit {
   }
   orderByDay() {
     this.displayList = [];
-    let today = new Date().getDay();
+    this.today = new Date().getDay();
     for (let i = 0; i < 6; i++) {
-      this.displayList.push(this.sortList[(today + i) % 7]);
+      console.log((this.today + i) % 7);
+      this.displayList.push(this.sortList[(this.today + i) % 7]);
     }
-    console.log(this.displayList);
-    this.changeCurrentList(this.displayList[0]);
+    console.log('displ', this.displayList);
+    this.changeCurrentList(this.displayList[this.today]);
     // this.changeCurrentList(this.displayList[0]);
     // this.updateHumidity(this.displayList[0]);
   }
